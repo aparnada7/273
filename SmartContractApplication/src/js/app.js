@@ -17,9 +17,13 @@ App = {
                   App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
             }
             web3 = new Web3(App.web3Provider);
-
             //   App.displayAccountInfo();
 
+            web3.eth.getAccounts(function(err, accounts){
+       if (err != null) console.error("An error occurred: "+err);
+       else if (accounts.length == 0) console.log("User is not logged in to MetaMask");
+       else console.log("User is logged in to MetaMask "+accounts);
+   });
             return App.initContract();
       },
 
@@ -34,7 +38,6 @@ App = {
                   //     return App.reloadArticles();
             });
       },
-
       getInstance: function() {
             return App.contracts.Insurance;
       }

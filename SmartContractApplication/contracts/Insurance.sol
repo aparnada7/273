@@ -29,9 +29,6 @@ contract Insurance{
 
     
     function register(string fname, string lname, string email, string password) public {
-        if(users_list[msg.sender].active == 1){
-            return;
-        }
         users_list[msg.sender] = User(email, password, msg.sender, fname, lname, 1);
         policies_bought[msg.sender] = 0;
     }
